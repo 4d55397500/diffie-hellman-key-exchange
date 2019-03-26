@@ -57,7 +57,7 @@ def start_server():
         and I will do similarly.
         
         """.format(N), "UTF-8"))
-        b = random.randint(0, 1000)  # private to bob
+        b = random.randint(0, 100)  # private to bob
         x_bob = calc_exp(b)  # not private
         computed_key = None
         while True:

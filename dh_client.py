@@ -16,7 +16,7 @@ clientsocket.connect(('localhost', 8089))
 first_server_msg = clientsocket.recv(1024).decode('utf-8')
 print(first_server_msg)
 
-a = random.randint(0, 1000)  # private to client
+a = random.randint(0, 100)  # private to client
 x_alice = calc_exp(a)  # not secret
 clientsocket.send(bytes(json.dumps({"alice_i": x_alice.real, "alice_j": x_alice.imag}), "UTF-8"))
 
@@ -43,6 +43,3 @@ while True:
       dec_server_msg = dec_suite.decrypt(server_msg)
       print("Received from Bob: \n\tencrypted: {} \n\tdecrypted: {}".format(server_msg, dec_server_msg))
 
-msg = 'foo'
-msg = msg + ' ' * (16 - (len(msg) % 16))
-enc_msg = str(enc.encrypt(msg))
