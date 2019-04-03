@@ -8,7 +8,8 @@ N = 32452867
 
 
 def calc_exp(x):
-   return cmath.exp(2j * cmath.pi * x / N)
+    return cmath.exp(2j * cmath.pi * x / N)
+
 
 clientsocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 clientsocket.connect(('localhost', 8089))
@@ -24,7 +25,7 @@ d = json.loads(clientsocket.recv(1024).decode('utf-8'))
 x_bob = complex(d['bob_i'], d['bob_j'])
 print("Read from Bob {}".format(x_bob))
 x2 = x_bob ** a  # alice's second computation
-computed_key = int((N * cmath.log(x2) / (2j * cmath.pi)).real)
+computed_key = round((N * cmath.log(x2) / (2j * cmath.pi)).real)
 print("\033[1;31;40m Computed shared key: {}".format(computed_key))
 
 # convert key to a 16 byte string
